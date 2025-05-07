@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>پروژه 3</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class' };
+  </script>
+
+  <!-- فونت وزیر -->
+  <link href="https://cdn.fontcdn.ir/Font/Persian/Vazir/Vazir.css" rel="stylesheet" />
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+  <style>
+    body {
+      font-family: 'Vazir', sans-serif;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .fade-in {
+      opacity: 1;
+      transform: translateY(0);
+      transition: none;
+    }
+
+    .dark body {
+      background-color: #121212 !important;
+      color: #e0e0e0 !important;
+    }
+
+    .dark header,
+    .dark section,
+    .dark footer {
+      background-color: #1e1e1e !important;
+    }
+
+    .dark a,
+    .dark button {
+      color: #bb86fc;
+    }
+
+    .dark #themeToggle {
+      background-color: #3700b3;
+      color: #fff;
+    }
+
+    .dark #themeToggle:hover {
+      background-color: #6200ea;
+    }
+
+    .dark .project:hover {
+      color: #bb86fc;
+    }
+
+    .dark .project {
+      color: #ffffff;
+    }
+  </style>
+</head>
+
+<body class="bg-white dark:bg-black text-gray-900 dark:text-white transition-colors duration-300">
+
+  <!-- هدر -->
+  <header class="p-6 bg-gray-100 dark:bg-gray-800 shadow-md fade-in">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-2xl font-bold">پروژه 3</h1>
+      <nav class="space-x-4 space-x-reverse">
+        <a href="index.html" class="hover:text-blue-500">بازگشت به خانه</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- معرفی پروژه -->
+  <section class="text-center py-16 bg-gray-50 dark:bg-gray-800 fade-in">
+    <h2 class="text-4xl font-extrabold mb-4">سایت چندزبانه با طراحی رسپانسیو</h2>
+    <p class="text-lg max-w-2xl mx-auto">در این پروژه، طراحی یک سایت چندزبانه با قابلیت تطابق با انواع دستگاه‌ها انجام شده است. این پروژه برای کاربرانی که در کشورهای مختلف زندگی می‌کنند و زبان‌های مختلف صحبت می‌کنند، طراحی شده تا بتوانند از آن استفاده کنند. طراحی سایت به‌گونه‌ای است که ترجمه‌ها به راحتی بارگذاری می‌شوند و رابط کاربری نیز به طور کامل واکنش‌گرا است.</p>
+    <p class="text-lg max-w-2xl mx-auto mt-4">در این پروژه از تکنولوژی‌های مدرن وب، مانند HTML5، CSS3، JavaScript و React استفاده شده تا تجربه‌ای شبیه به اپلیکیشن‌های موبایل برای کاربران فراهم شود. به‌علاوه، طراحی وبسایت با هدف کاربرپسندی و راحتی در استفاده از ابزارهای سایت به گونه‌ای بهینه‌شده است که کاربران بتوانند سریع‌تر به محتوای مورد نظر خود دست پیدا کنند.</p>
+  </section>
+
+  <!-- دکمه تغییر تم -->
+  <button id="themeToggle"
+    class="fixed bottom-4 left-4 w-12 h-12 rounded-full flex items-center justify-center
+           bg-gray-300 dark:bg-gray-600 shadow-lg transition-colors duration-300 z-50 text-xl">
+    <span id="sunIcon" class="material-icons">wb_sunny</span>
+    <span id="moonIcon" class="material-icons hidden">nightlight_round</span>
+  </button>
+
+  <!-- اسکریپت -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const toggle = document.getElementById('themeToggle');
+      const sunIcon = document.getElementById('sunIcon');
+      const moonIcon = document.getElementById('moonIcon');
+      const html = document.documentElement;
+
+      const setTheme = (isDark) => {
+        html.classList.toggle('dark', isDark);
+        sunIcon.classList.toggle('hidden', isDark);
+        moonIcon.classList.toggle('hidden', !isDark);
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      };
+
+      const saved = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const isDark = saved === 'dark' || (!saved && prefersDark);
+      setTheme(isDark);
+
+      toggle.addEventListener('click', () => {
+        const nowDark = !html.classList.contains('dark');
+        setTheme(nowDark);
+      });
+    });
+  </script>
+
+</body>
+</html>
